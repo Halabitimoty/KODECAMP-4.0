@@ -1,102 +1,49 @@
-// using generators to create a sequence that calculates Fibonacci numbers on demand
-
-/**
- *
- * @param {number} n
- */
-
-function* fibonacciGenerator(n) {
-  let first_num = 0,
-    second_num = 1,
-    temp = 0;
-
-  for (let i = 0; i < n; i++) {
-    yield second_num;
-
-    first_num = second_num;
-    second_num = first_num + second_num;
-    temp = first_num;
-  }
-}
-
-const fib = fibonacciGenerator(5);
-
-for (let i = 0; i < 5; i++) {
-  console.log(fib.next());
-}
-
-// Using closure  to store the state of the sequence (previous two numbers).
-
-/**
- *
- * @param {number} n
- * @returns
- */
-
-function fibonacciClosure(n) {
-  let first_num = 0,
-    second_num = 1;
-  return function () {
-    let temp = first_num;
-    first_num = second_num;
-    second_num = first_num + first_num;
-    return second_num;
-  };
-}
-
-const fib2 = fibonacciClosure(5);
-for (let i = 0; i < 5; i++) {
-  console.log(fib2());
-}
-
-// implementing a cache within the closure to store previously calculated Fibonacci numbers.
-
-function fibonacciCaching() {
-  const cache = {};
+function* fibonacci(n, a, b) {
+  let cache = {};
 
   function fib(n) {
-    if (n in cache) {
-      return cache[n];
+    if (n === 0) {
+      return 0;
     }
-
-    if (n <= 1) {
-      return n;
+    if (n === 1) {
+      return 1;
+    }
+    if (cache[n] !== undefined) {
+      return cache[n];
     }
     cache[n] = fib(n - 1) + fib(n - 2);
     return cache[n];
   }
+  fib(n);
 
-  return fib;
-}
-
-const fib3 = fibonacciCaching();
-const result = fib3(5);
-console.log(result);
-
-// Modify the generator function to accept a starting and ending index as arguments
-
-/**
- *
- * @param {number} start
- * @param {number} end
- */
-
-function* fibonacciGeneratorModify(start, end) {
-  let first_num = start,
-    second_num = 1,
-    temp = 0;
-
-  for (let i = 0; i < end; i++) {
-    yield second_num;
-
-    first_num = second_num;
-    second_num = first_num + second_num;
-    temp = first_num;
+  for (const num in cache) {
+    if (num >= a && num <= b) {
+      console.log(`${cache[num]}`);
+    }
   }
 }
+const fib = fibonacci(10, 4, 9);
 
-const fib4 = fibonacciGeneratorModify(5, 10);
+console.log(fib.next().value);
 
-for (let i = 0; i < 10; i++) {
-  console.log(fib4.next());
-}
+// function* fibonacci(n) {
+//   let a = 0;
+//   let b = 1;
+//   let cache = {};
+
+//   for (let i = 0; i < n; i++) {
+//     yield a;
+//     if (cache[a] === undefined) {
+//       cache[a] = a;
+//     }
+//     const temp = a;
+//     a = b;
+//     b = temp + b;
+//   }
+// }
+
+// const fib = fibonacci(10);
+
+// for (const num of fib) {
+//   console.log(num);
+// }
