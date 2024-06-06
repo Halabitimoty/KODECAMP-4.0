@@ -8,6 +8,7 @@ export class BookManagement {
   }
 
   /**
+   * add a Book
    *
    * @param {string} title
    * @param {string} author
@@ -19,6 +20,7 @@ export class BookManagement {
   }
 
   /**
+   * remove a Book
    *
    * @param {string} bookIsbn
    */
@@ -27,6 +29,7 @@ export class BookManagement {
   }
 
   /**
+   * search for Book based on Query
    *
    * @param {object} query
    * @returns {Array} books
@@ -50,6 +53,7 @@ export class BookManagement {
   }
 
   /**
+   * update Book Based on Query
    *
    * @param {object} query
    * @param {boolean} update
@@ -63,6 +67,12 @@ export class BookManagement {
     });
   }
 
+  /**
+   *  check if Book is available
+   *
+   * @param {string} bookIsbn
+   * @returns Text
+   */
   isBookAvailable(bookIsbn) {
     const check = this.books.filter((b) => b.isbn === bookIsbn);
     if (check[0].isAvailable) {
@@ -72,6 +82,7 @@ export class BookManagement {
   }
 
   /**
+   * get all Books
    *
    * @returns {Array} books
    */

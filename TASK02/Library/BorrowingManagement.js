@@ -14,13 +14,13 @@ export class BorrowingManagement extends BookManagement {
   }
 
   /**
+   * borrow a Book
    *
    * @param {string} userId
    * @param {string} bookIsbn
    * @param {boolean} check
    * @returns
    */
-
   borrowBook(userId, bookIsbn) {
     const check = this.searchBook({ isbn: bookIsbn });
 
@@ -34,15 +34,7 @@ export class BorrowingManagement extends BookManagement {
   }
 
   /**
-   *
-   * @param {string} bookIsbn
-   * @returns {boolean} books
-   */
-  chackBookAvailability(bookIsbn) {
-    return this.borrowingList.map((b) => b.bookIsbn !== bookIsbn);
-  }
-
-  /**
+   * return a Book borrowed
    *
    * @param {string} userId
    * @param {string} bookIsbn
@@ -63,6 +55,7 @@ export class BorrowingManagement extends BookManagement {
   }
 
   /**
+   * Get a list of borrowed books
    *
    * @returns {Array} borrowed books
    */

@@ -1,5 +1,6 @@
 export class UserManagement {
   /**
+   * Object Contructor
    *
    * @param {string} id
    * @param {string} name
@@ -11,6 +12,7 @@ export class UserManagement {
   }
 
   /**
+   * add user to the database
    *
    * @param {string} id
    * @param {string} name
@@ -20,6 +22,7 @@ export class UserManagement {
   }
 
   /**
+   * remove a user from database
    *
    * @param {string} userId
    */
@@ -28,6 +31,7 @@ export class UserManagement {
   }
 
   /**
+   * search for a user in the database
    *
    * @param {string} query
    * @returns  {Array} users
@@ -49,6 +53,7 @@ export class UserManagement {
   }
 
   /**
+   *  Get a list of all users
    *
    * @returns {Array} users
    */
